@@ -56,7 +56,10 @@
                 </div>
                 <div>
                     <label for="remark" class="block text-sm font-semibold text-on-surface-variant mb-2">Remark</label>
-                    <textarea id="remark" name="remark" rows="4" class="w-full rounded-2xl border border-outline-variant bg-surface-container-highest px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none">{{ old('remark') }}</textarea>
+                    <textarea id="remark" name="remark" rows="4" required class="w-full rounded-2xl border border-outline-variant bg-surface-container-highest px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none">{{ old('remark') }}</textarea>
+                    @error('remark')
+                        <p class="mt-2 text-sm text-rose-600">{{ $message }}</p>
+                    @enderror
                 </div>
                 <button type="submit" class="inline-flex items-center gap-xs rounded-lg bg-primary px-md py-sm text-on-primary font-bold hover:bg-primary-container transition-all">Save update</button>
             </form>

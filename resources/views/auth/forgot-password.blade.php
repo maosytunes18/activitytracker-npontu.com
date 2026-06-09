@@ -158,16 +158,43 @@
 
 <!-- Action Buttons -->
 <div class="w-full space-y-md">
-<button class="btn-gradient w-full py-md px-lg rounded-lg font-label-lg text-label-lg text-on-primary-container font-bold hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-sm" type="button">
-                        Open Email Client
-                        <span class="material-symbols-outlined">open_in_new</span>
-</button>
-<div class="pt-sm">
-<p class="font-label-md text-label-md text-on-surface-variant">
-                            Didn't receive the email?
-                            <button type="button" class="text-primary font-bold hover:underline ml-xs transition-colors cursor-pointer" onclick="window.location.reload()">Resend link</button>
-</p>
-</div>
+<form method="POST" action="{{ route('password.email') }}" class="w-full">
+        @csrf
+
+                <label class="block text-left font-label-md text-label-md text-on-surface-variant mb-xs">Email address</label>
+        <div class="relative group">
+            <input
+                type="email"
+                name="email"
+                value="{{ old('email') }}"
+                placeholder="specialist@gmail.com"
+                required
+                autofocus
+                inputmode="email"
+                class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-md py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-on-surface font-body-md"
+            />
+            <span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-outline">mail</span>
+        </div>
+
+        @error('email')
+            <p class="mt-xs text-sm text-rose-500">{{ $message }}</p>
+        @enderror
+
+        <button
+            class="btn-gradient w-full mt-md py-md px-lg rounded-lg font-label-lg text-label-lg text-on-primary-container font-bold hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-sm"
+            type="submit"
+        >
+            Send reset link
+            <span class="material-symbols-outlined">send</span>
+        </button>
+    </form>
+
+    <div class="pt-sm">
+        <p class="font-label-md text-label-md text-on-surface-variant">
+            Didn't receive the email?
+            <button type="button" class="text-primary font-bold hover:underline ml-xs transition-colors cursor-pointer" onclick="window.location.reload()">Resend link</button>
+        </p>
+    </div>
 </div>
 <!-- Secondary Link -->
 <div class="mt-xl pt-lg border-t border-white/5 w-full">
