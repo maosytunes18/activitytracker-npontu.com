@@ -88,11 +88,6 @@
                 <div class="space-y-2">
                     <div class="flex justify-between items-center px-1">
                         <label class="font-label-lg text-label-lg text-on-surface-variant block" for="password">Password</label>
-                        @if (Route::has('password.request'))
-                            <a class="font-label-md text-label-md text-primary hover:text-on-primary-fixed-variant transition-colors" href="{{ route('password.request') }}">Forgot Password?</a>
-                        @else
-                            <span class="font-label-md text-label-md text-primary/70">Forgot Password?</span>
-                        @endif
                     </div>
 
                     <div class="relative">
@@ -108,6 +103,20 @@
                     @error('password')
                         <p class="text-sm text-error mt-1">{{ $message }}</p>
                     @enderror
+                </div>
+
+                <!-- Forgot password (moved away from any clickable header area to prevent accidental submit) -->
+                <div class="flex justify-end px-1">
+                    @if (Route::has('password.request'))
+                        <a
+                            class="font-label-md text-label-md text-primary hover:text-on-primary-fixed-variant transition-colors"
+                            href="{{ route('password.request') }}"
+                        >
+                            Forgot Password?
+                        </a>
+                    @else
+                        <span class="font-label-md text-label-md text-primary/70">Forgot Password?</span>
+                    @endif
                 </div>
 
                 <!-- Remember Me Toggle -->
