@@ -230,7 +230,7 @@
 <body class="font-body-md overflow-hidden">
 <aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container border-r border-outline-variant flex flex-col py-base px-sm z-50">
     <div class="mb-lg px-base">
-        <h1 class="font-headline-lg text-headline-lg font-black text-primary leading-tight">SupportTrack</h1>
+<h1 class="font-headline-lg text-headline-lg font-black text-primary leading-tight">VITALITY</h1>
         <p class="text-on-surface-variant font-label-md mt-1 opacity-70">INTERNAL SYSTEM</p>
     </div>
     <nav class="flex-1 space-y-1">
@@ -255,11 +255,20 @@
             <span class="font-body-md">Team Audit</span>
         </a>
     </nav>
-    <div class="mt-auto p-base border-t border-outline-variant/30">
+<div class="mt-auto p-base border-t border-outline-variant/30">
         <a href="{{ route('activities.create') }}" class="w-full inline-flex items-center justify-center gap-xs bg-primary-container text-on-primary-container font-headline-md text-label-lg py-base rounded-lg hover:brightness-110 active:scale-[0.98] transition-all performance-glow">
             <span class="material-symbols-outlined">add</span>
             Create Ticket
         </a>
+
+        <form method="POST" action="{{ route('logout') }}" class="mt-sm">
+            @csrf
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-xs bg-surface-container-highest text-on-surface font-headline-md text-label-lg py-base rounded-lg hover:bg-surface-bright transition-all">
+                <span class="material-symbols-outlined">logout</span>
+                Logout
+            </button>
+        </form>
+
         <div class="mt-md flex items-center gap-sm px-xs">
             <div class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden"></div>
             <div class="min-w-0">
