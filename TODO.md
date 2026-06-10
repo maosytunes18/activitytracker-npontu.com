@@ -1,11 +1,6 @@
-# TODO
-
-- [x] Implement missing route for `activities.updates.store` (wire `ActivityUpdateController@store` in `routes/web.php`).
-- [x] Update Livewire `ManageActivities` to write audit-trail rows (`ActivityUpdate`) on create/update (and set `created_by`).
-
-- [x] Verify migrations/models for `activity_updates` + `Activity` relationships used by `activities/show`.
-- [ ] Fix “Save update” UX/validation if remark can be empty (controller requires `remark`).
-- [x] Ensure notifications rendering handles `actor_user_id`/payload consistently.
-- [x] Run `php artisan route:list | grep activities.updates.store` and `php artisan test`.
-
+- [ ] Fix Google OAuth/verification: add missing `google` config to `config/services.php`.
+- [ ] Make Google callback handling more robust (remove unnecessary stateless usage if needed, ensure redirect works).
+- [ ] Remove Facebook login UI (confirm no lingering Facebook routes/buttons).
+- [ ] Clear config/routes cache and sanity-check OAuth endpoints.
+- [ ] Provide verification steps for Google login in production/staging.
 

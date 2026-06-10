@@ -11,6 +11,7 @@
         "laravel/fortify": "^1.37",
         "laravel/framework": "^13.8",
         "laravel/jetstream": "^5.5",
+        "laravel/socialite": "^5.27",
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^3.0"
     },

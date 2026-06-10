@@ -10,17 +10,22 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class SocialAuthController extends \Illuminate\Routing\Controller
 {
+
     public function redirectToGoogle(): RedirectResponse
     {
-        return Socialite::driver('google')
-            ->scopes(['email', 'profile'])
-            ->redirect();
+        // Socialite config + scopes are handled by the provider; keep this minimal.
+        return Socialite::driver('google')->redirect();
     }
+
+
 
     public function handleGoogleCallback(Request $request)
     {
         try {
-            $googleUser = Socialite::driver('google')->stateless()->user();
+            // Use normal (session-based) OAuth. `stateless()` can break verification flows
+            // because the state/csrf handling is skipped.
+            $googleUser = Socialite::driver('google')->user();
+
         } catch (\Throwable $e) {
             Log::error('Google OAuth callback failed', [
                 'error' => $e->getMessage(),
@@ -48,11 +53,20 @@ class SocialAuthController extends \Illuminate\Routing\Controller
                 'password' => bcrypt(bin2hex(random_bytes(24))),
                 'employee_id' => $request->input('employee_id') ?: 'google-' . bin2hex(random_bytes(4)),
                 'department' => 'General',
-                'phone' => $googleUser->getPhone() ?: null,
+                'phone' => null,
             ]);
+
         }
 
-        auth()->login($user, true);
+
+        // Ensure the user is authenticated using Laravel's session guard.
+        // Use the standard Laravel session authentication flow.
+        \Illuminate\Support\Facades\Auth::login($user, true);
+
+
+
+
+
 
         return redirect()->intended('/dashboard');
     }
